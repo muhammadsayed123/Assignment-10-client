@@ -1,11 +1,11 @@
 // import React from 'react';
 
 import { use } from "react";
-import { Link } from "react-router";
 import { AuthContest } from "../Contexts/AuthContext";
+import { Link } from "react-router";
 
-const Login = () => {
-  const { signInWithGoogle, signInUser } = use(AuthContest);
+const Register = () => {
+  const { signInWithGoogle, createUser } = use(AuthContest);
 
   const handleGoogleSignIn = () => {
     signInWithGoogle()
@@ -17,39 +17,58 @@ const Login = () => {
       });
   };
 
-  const handleSignIn = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
 
+    const name = e.target.name.value;
     const email = e.target.email.value;
+    const photo = e.target.photo.value;
     const password = e.target.password.value;
-    console.log(password, email);
+    console.log(name, email, photo, password);
 
-    signInUser(email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-      });
+    createUser(email, password)
+    .then((userCredential) => {
+    const user = userCredential.user;
+    console.log(user)
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode,errorMessage)
+  });
+
   };
 
   return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
         <div className="card-body">
-          <h1 className="font-bold text-3xl text-center">Login now</h1>
-          <form onSubmit={handleSignIn}>
+          <h1 className="font-bold text-3xl text-center">Register now</h1>
+          <form onSubmit={handleRegister}>
             <fieldset className="fieldset">
+              {/* name */}
+              <label className="label">Name</label>
+              <input
+                type="text"
+                name="name"
+                className="input"
+                placeholder="Enter your name"
+              />
               {/* email */}
               <label className="label">Email</label>
               <input
                 name="email"
-                type="email"
+                type="text"
                 className="input"
-                placeholder="Email"
+                placeholder="Enter your email"
+              />
+              {/* Photo */}
+              <label className="label">Photo URL</label>
+              <input
+                name="photo"
+                type="text"
+                className="input"
+                placeholder="https://example.com/photo.jpg"
               />
               {/* password */}
               <label className="label">Password</label>
@@ -59,10 +78,7 @@ const Login = () => {
                 className="input"
                 placeholder="Password"
               />
-              <div>
-                <a className="link link-hover">Forgot password?</a>
-              </div>
-              <button className="btn btn-neutral mt-4">Login</button>
+              <button className="btn btn-neutral mt-4">Register</button>
 
               <p className="underline text-center font-medium">Or</p>
             </fieldset>
@@ -102,9 +118,9 @@ const Login = () => {
             Login with Google
           </button>
           <p>
-            Don't have an account ?{" "}
-            <Link to="/register" className="underline">
-              Register
+            Already have an account ?{" "}
+            <Link to="/login" className="underline">
+              Login
             </Link>
           </p>
         </div>
@@ -113,4 +129,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

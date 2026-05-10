@@ -1,6 +1,18 @@
 // import React from "react";
 
+import { use } from "react";
+import { AuthContest } from "../Contexts/AuthContext";
+import { Link } from "react-router";
+
 const Navbar = () => {
+  const { user,logOut } = use(AuthContest);
+
+
+  const handleLogOut = () => {
+    logOut()
+      .then((res) => console.log(res))
+      .catch();
+  };
 
   return (
     <div>
@@ -39,23 +51,27 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">MovieMaster</a>
+          <Link to='/' className="btn btn-ghost text-xl">MovieMaster</Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
-             <li>
-                <a>All Movies</a>
-              </li>
-              <li>
-                <a>My Collection</a>
-              </li>
-              <li>
-                <a>Watchlist</a>
-              </li>
+            <li>
+              <a>All Movies</a>
+            </li>
+            <li>
+              <a>My Collection</a>
+            </li>
+            <li>
+              <a>Watchlist</a>
+            </li>
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Login</a>
+          {user ? (
+            <Link onClick={handleLogOut} className="btn">Sign Out</Link>
+          ) : (
+            <Link to='/login' className="btn">Login</Link>
+          )}
         </div>
       </div>
     </div>
