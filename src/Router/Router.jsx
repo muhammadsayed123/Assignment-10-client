@@ -8,6 +8,7 @@ import MovieDetails from "../Pages/MovieDetails";
 import MyCollection from "../Pages/MyCollection";
 import PrivateRouter from "../Contexts/PrivateRouter";
 import AddMovie from "../Pages/AddMovie";
+import UpdateMovie from "../Pages/UpdateMovie";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,16 @@ const router = createBrowserRouter([
             <AddMovie></AddMovie>
           </PrivateRouter>
         ),
+      },
+      {
+        path: "/updateMovie/:id",
+        element: (
+          <PrivateRouter>
+            <UpdateMovie></UpdateMovie>
+          </PrivateRouter>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/movie/${params.id}`),
       },
     ],
   },

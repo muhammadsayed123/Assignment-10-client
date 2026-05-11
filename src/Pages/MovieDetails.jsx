@@ -19,10 +19,12 @@ const MovieDetails = () => {
     releaseYear,
     cast,
     addedBy,
+    _id
   } = useLoaderData();
   //   console.log(movie);
   return (
     <div className="w-10/12 mx-auto my-10">
+        <Link to="/allMovie" className="btn btn-outline btn-accent my-5">Back</Link>
       <div className="flex gap-5">
         <div className="left flex-1">
           <img src={posterUrl} alt="" className="rounded-2xl" />
@@ -56,13 +58,11 @@ const MovieDetails = () => {
             <h1 className="font-semibold">{addedBy}</h1>
           </div>
 
-            <Link to="/allMovie" className="btn btn-outline btn-accent w-full my-5">Back</Link>
-
           <div>
             {user && (
-              <div className="mt-3c flex flex-row justify-between">
-                <button className="btn btn-neutral btn-outline mr-10">Edit</button> 
-                <button className="btn btn-neutral btn-outline">Delete</button>
+              <div className="mt-3c flex flex-row mt-5">
+                <Link to={`/updateMovie/${_id}`} className="btn btn-neutral btn-outline mr-5 rounded-4xl">Update Page</Link> 
+                <Link className="btn btn-neutral btn-outline rounded-4xl">Delete</Link>
               </div>
             )}
           </div>
