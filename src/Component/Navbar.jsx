@@ -41,7 +41,7 @@ const Navbar = () => {
             >
               <li>
                 <p>
-                  <Link to="/all-movie" className="hover:text-amber-600">All Movies</Link>
+                  <Link to="/allMovie" className="hover:text-amber-600">All Movies</Link>
                 </p>
               </li>
               <li>
@@ -64,7 +64,7 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">
             <li>
               <p>
-                <Link to="/all-movie" className="hover:text-amber-600">All Movies</Link>
+                <Link to="/allMovie" className="hover:text-amber-600">All Movies</Link>
               </p>
             </li>
             <li>

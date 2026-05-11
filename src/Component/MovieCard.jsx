@@ -1,9 +1,10 @@
 // import React from 'react';
 
 import { FaStar } from "react-icons/fa";
+import { Link } from "react-router";
 
 const MovieCard = ({ movie }) => {
-  const { posterUrl, title, rating, genre } = movie;
+  const { posterUrl, title, rating, genre, _id } = movie;
 
   return (
     <div>
@@ -17,20 +18,24 @@ const MovieCard = ({ movie }) => {
           cursor-pointer"
         >
           <figure>
-            <img src={posterUrl} alt="Movie" className="h-[200px] w-full" />
+            <img src={posterUrl} alt="Movie" className="h-[250px] w-full" />
           </figure>
           <div className="card-body">
             <div className="flex items-center justify-between">
               <h2 className="card-title font-bold">{title}</h2>
-              <h2 className="badge badge-soft badge-warning">{genre}</h2>
+              <h2 className="badge badge-soft badge-warning font-semibold">
+                {genre}
+              </h2>
             </div>
-            <div className="flex items-center gap-1 badge badge-dash badge-secondary">
+            <div className="flex items-center gap-1 badge badge-dash badge-secondary ">
               <FaStar />
               <p>{rating}</p>
             </div>
             <div className="card-actions justify-between">
               <button className="btn">Buy Now</button>
-              <button className="btn">Details</button>
+              <Link to={`/movieDetails/${_id}`} className="btn">
+                Details
+              </Link>
             </div>
           </div>
         </div>
