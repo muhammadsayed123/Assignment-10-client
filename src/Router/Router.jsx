@@ -5,6 +5,9 @@ import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import AllMovie from "../Pages/AllMovie";
 import MovieDetails from "../Pages/MovieDetails";
+import MyCollection from "../Pages/MyCollection";
+import PrivateRouter from "../Contexts/PrivateRouter";
+import AddMovie from "../Pages/AddMovie";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +36,22 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:3000/movie/${params.id}`),
         Component: MovieDetails,
+      },
+      {
+        path: "/myCollection",
+        element: (
+          <PrivateRouter>
+            <MyCollection></MyCollection>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/addMovie",
+        element: (
+          <PrivateRouter>
+            <AddMovie></AddMovie>
+          </PrivateRouter>
+        ),
       },
     ],
   },
