@@ -5,8 +5,7 @@ import { AuthContest } from "../Contexts/AuthContext";
 import { Link } from "react-router";
 
 const Navbar = () => {
-  const { user,logOut } = use(AuthContest);
-
+  const { user, logOut } = use(AuthContest);
 
   const handleLogOut = () => {
     logOut()
@@ -15,7 +14,7 @@ const Navbar = () => {
   };
 
   return (
-    <div>
+    <div className="">
       <div className="navbar bg-base-100 shadow-sm">
         <div className="navbar-start">
           <div className="dropdown">
@@ -41,36 +40,54 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <li>
-                <a>All Movies</a>
+                <p>
+                  <Link to="/all-movie" className="hover:text-amber-600">All Movies</Link>
+                </p>
               </li>
               <li>
-                <a>My Collection</a>
+                <p>
+                  <Link className="hover:text-amber-600">My Collection</Link>
+                </p>
               </li>
               <li>
-                <a>Watchlist</a>
+                <p>
+                  <Link className="hover:text-amber-600">Watchlist</Link>
+                </p>
               </li>
             </ul>
           </div>
-          <Link to='/' className="btn btn-ghost text-xl">MovieMaster</Link>
+          <Link to="/" className="btn btn-ghost text-xl text-amber-500">
+            MovieMaster
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <a>All Movies</a>
+              <p>
+                <Link to="/all-movie" className="hover:text-amber-600">All Movies</Link>
+              </p>
             </li>
             <li>
-              <a>My Collection</a>
+              <p>
+                <Link className="hover:text-amber-600">My Collection</Link>
+              </p>
             </li>
             <li>
-              <a>Watchlist</a>
+              <p>
+                <Link className="hover:text-amber-600">Watchlist</Link>
+              </p>
             </li>
           </ul>
         </div>
         <div className="navbar-end">
           {user ? (
-            <Link onClick={handleLogOut} className="btn">Sign Out</Link>
+            <Link onClick={handleLogOut} className="btn">
+              Sign Out
+            </Link>
           ) : (
-            <Link to='/login' className="btn">Login</Link>
+            <Link to="/login" className="btn">
+              Login
+            </Link>
           )}
         </div>
       </div>
