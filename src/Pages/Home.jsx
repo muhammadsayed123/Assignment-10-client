@@ -10,7 +10,7 @@ import TopRatedMovies from "../Component/TopRatedMovies";
 
 const Home = () => {
   const topRated = useLoaderData();
-  console.log(topRated);
+//   console.log(topRated);
   return (
     <div>
       <HeroSection></HeroSection>
@@ -22,9 +22,11 @@ const Home = () => {
           Top Rated
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 my-5">
-          {topRated.map((movie) => (
+          {
+          topRated.map((movie) => (
             <TopRatedMovies key={movie.id} movie={movie}></TopRatedMovies>
-          ))}
+          ))
+          }
         </div>
       </div>
 
