@@ -1,11 +1,14 @@
 // import React from 'react';
 // import { use } from "react";
 // import { AuthContest } from "../Contexts/AuthContext";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
+import Swal from "sweetalert2";
 
 const UpdateMovie = () => {
   const data = useLoaderData();
   console.log(data);
+
+  const nevigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,11 +16,11 @@ const UpdateMovie = () => {
     const formData = {
       title: e.target.title.value,
       genre: e.target.genre.value,
-      releaseYear: e.target.releaseYear.value,
+      releaseYear: parseInt(e.target.releaseYear.value),
       director: e.target.director.value,
-      duration: e.target.duration.value,
+      duration: parseInt(e.target.duration.value),
       cast: e.target.cast.value,
-      rating: e.target.rating.value,
+      rating: parseFloat(e.target.rating.value),
       plotSummary: e.target.plotSummary.value,
       posterUrl: e.target.posterUrl.value,
       language: "English",
@@ -36,6 +39,13 @@ const UpdateMovie = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        nevigate("/allMovie");
+
+        Swal.fire({
+          title: "Updated!",
+          text: "Update successfully",
+          icon: "success",
+        });
       })
       .catch((err) => {
         console.log(err);

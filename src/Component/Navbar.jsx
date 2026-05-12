@@ -1,11 +1,19 @@
 // import React from "react";
 
-import { use } from "react";
+import { use, useEffect, useState } from "react";
 import { AuthContest } from "../Contexts/AuthContext";
 import { Link } from "react-router";
 
 const Navbar = () => {
   const { user, logOut } = use(AuthContest);
+  const [theme,setTheme]=useState(localStorage.getItem('theme') || "light")
+
+  useEffect(()=>{
+    const html=document.querySelector('html')
+    html.setAttribute("data-theme",theme)
+    localStorage.setItem("theme",theme)
+  },[theme])
+
 
   const handleLogOut = () => {
     logOut()
@@ -13,10 +21,14 @@ const Navbar = () => {
       .catch();
   };
 
+  const handleTheme=(checked)=>{
+    setTheme(checked ? "dark" : "light")
+  }
+
   return (
     <div className="">
       <div className="navbar bg-base-100 shadow-sm">
-        <div className="navbar-start">
+        <div className="navbar-start lg:ml-10 md:ml-5">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
@@ -79,7 +91,8 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <div className="navbar-end">
+        <div className="navbar-end lg:mr-10 md:mr-5">
+          <input onChange={(e)=>handleTheme(e.target.checked)} type="checkbox" defaultChecked={localStorage.getItem('theme')} className="toggle mr-2" />
           {user ? (
             <Link onClick={handleLogOut} className="btn">
               Sign Out

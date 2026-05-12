@@ -2,7 +2,7 @@
 
 const AboutPlatform = () => {
   return (
-    <div>
+    <div className="w-10/12 mx-auto">
       <h1 className="font-extrabold text-amber-500 text-3xl text-center mt-9 underline ">
         About Platform
       </h1>

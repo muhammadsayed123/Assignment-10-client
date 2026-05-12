@@ -9,6 +9,7 @@ import MyCollection from "../Pages/MyCollection";
 import PrivateRouter from "../Contexts/PrivateRouter";
 import AddMovie from "../Pages/AddMovie";
 import UpdateMovie from "../Pages/UpdateMovie";
+import Error from "../Pages/Error";
 
 const router = createBrowserRouter([
   {
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path:'*',
+    Component:Error
+  }
 ]);
 
 export default router;

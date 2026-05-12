@@ -1,16 +1,25 @@
 // import React from 'react';
 
 import { use } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { AuthContest } from "../Contexts/AuthContext";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const { signInWithGoogle, signInUser } = use(AuthContest);
+  const nevigate = useNavigate();
 
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
         console.log(result.user);
+        nevigate("/");
+
+        Swal.fire({
+          title: "Login!",
+          text: "Login successfully.",
+          icon: "success",
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -28,6 +37,13 @@ const Login = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
+        nevigate("/");
+
+        Swal.fire({
+          title: "Login!",
+          text: "Login successfully.",
+          icon: "success",
+        });
       })
       .catch((error) => {
         const errorCode = error.code;

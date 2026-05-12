@@ -17,7 +17,7 @@ const Home = () => {
 
       <StatisticsSection></StatisticsSection>
 
-      <div>
+      <div className="w-10/12 mx-auto">
         <h1 className="font-extrabold text-amber-500 text-3xl text-center mt-6 underline">
           Top Rated
         </h1>

@@ -14,7 +14,7 @@ const TopRatedMovies = ({ movie }) => {
                       hover:scale-105 
                       hover:-translate-y-2
                       hover:shadow-2xl
-                      cursor-pointer"
+                      cursor-pointer border-3 rounded-xl border-amber-500"
       >
         <figure>
           <img src={posterUrl} alt="Movie" className="h-[250px] w-full" />

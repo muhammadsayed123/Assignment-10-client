@@ -2,15 +2,24 @@
 
 import { use } from "react";
 import { AuthContest } from "../Contexts/AuthContext";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const { signInWithGoogle, createUser } = use(AuthContest);
+  const nevigate = useNavigate();
 
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
         console.log(result.user);
+        nevigate("/");
+
+        Swal.fire({
+          title: "Register!",
+          text: "Register successfully.",
+          icon: "success",
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -27,16 +36,22 @@ const Register = () => {
     console.log(name, email, photo, password);
 
     createUser(email, password)
-    .then((userCredential) => {
-    const user = userCredential.user;
-    console.log(user)
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log(errorCode,errorMessage)
-  });
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+        nevigate("/");
 
+        Swal.fire({
+          title: "Register!",
+          text: "Register successfully.",
+          icon: "success",
+        });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
   };
 
   return (

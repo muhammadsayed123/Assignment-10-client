@@ -8,14 +8,14 @@ const MovieCard = ({ movie }) => {
 
   return (
     <div>
-      <div>
+      <div className="">
         <div
           className="card bg-gray-100 shadow-sm  transition-all 
           duration-300 
           hover:scale-105 
           hover:-translate-y-2
           hover:shadow-2xl
-          cursor-pointer"
+          cursor-pointer border-3 rounded-xl border-amber-500"
         >
           <figure>
             <img src={posterUrl} alt="Movie" className="h-[250px] w-full" />
