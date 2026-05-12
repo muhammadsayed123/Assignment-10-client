@@ -6,14 +6,13 @@ import { Link } from "react-router";
 
 const Navbar = () => {
   const { user, logOut } = use(AuthContest);
-  const [theme,setTheme]=useState(localStorage.getItem('theme') || "light")
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
-  useEffect(()=>{
-    const html=document.querySelector('html')
-    html.setAttribute("data-theme",theme)
-    localStorage.setItem("theme",theme)
-  },[theme])
-
+  useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   const handleLogOut = () => {
     logOut()
@@ -21,9 +20,9 @@ const Navbar = () => {
       .catch();
   };
 
-  const handleTheme=(checked)=>{
-    setTheme(checked ? "dark" : "light")
-  }
+  const handleTheme = (checked) => {
+    setTheme(checked ? "dark" : "light");
+  };
 
   return (
     <div className="">
@@ -53,12 +52,16 @@ const Navbar = () => {
             >
               <li>
                 <p>
-                  <Link to="/allMovie" className="hover:text-amber-600">All Movies</Link>
+                  <Link to="/allMovie" className="hover:text-amber-600">
+                    All Movies
+                  </Link>
                 </p>
               </li>
               <li>
                 <p>
-                  <Link to='/myCollection' className="hover:text-amber-600">My Collection</Link>
+                  <Link to="/myCollection" className="hover:text-amber-600">
+                    My Collection
+                  </Link>
                 </p>
               </li>
               <li>
@@ -76,12 +79,16 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">
             <li>
               <p>
-                <Link to="/allMovie" className="hover:text-amber-600">All Movies</Link>
+                <Link to="/allMovie" className="hover:text-amber-600">
+                  All Movies
+                </Link>
               </p>
             </li>
             <li>
               <p>
-                <Link to='/myCollection'  className="hover:text-amber-600">My Collection</Link>
+                <Link to="/myCollection" className="hover:text-amber-600">
+                  My Collection
+                </Link>
               </p>
             </li>
             <li>
@@ -92,15 +99,25 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end lg:mr-10 md:mr-5">
-          <input onChange={(e)=>handleTheme(e.target.checked)} type="checkbox" defaultChecked={localStorage.getItem('theme')} className="toggle mr-2" />
+          <input
+            onChange={(e) => handleTheme(e.target.checked)}
+            type="checkbox"
+            defaultChecked={localStorage.getItem("theme")}
+            className="toggle mr-2"
+          />
           {user ? (
             <Link onClick={handleLogOut} className="btn">
               Sign Out
             </Link>
           ) : (
-            <Link to="/login" className="btn">
-              Login
-            </Link>
+            <div>
+              <Link to="/login" className="btn  hover:bg-amber-500 mr-2">
+                Login
+              </Link>
+              <Link to="/register" className="btn hover:bg-amber-500 ">
+                Register
+              </Link>
+            </div>
           )}
         </div>
       </div>

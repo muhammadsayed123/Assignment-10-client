@@ -1,12 +1,13 @@
 // import React from 'react';
 
-import { use } from "react";
+import { use, useState } from "react";
 import { AuthContest } from "../Contexts/AuthContext";
 import { Link, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 
 const Register = () => {
   const { signInWithGoogle, createUser } = use(AuthContest);
+  const [error, setError] = useState("");
   const nevigate = useNavigate();
 
   const handleGoogleSignIn = () => {
@@ -34,6 +35,19 @@ const Register = () => {
     const photo = e.target.photo.value;
     const password = e.target.password.value;
     console.log(name, email, photo, password);
+
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters long.");
+      return;
+    }
+    if (!/[A-Z]/.test(password)) {
+      setError("Password must contain at least one uppercase letter.");
+      return;
+    }
+    if (!/[a-z]/.test(password)) {
+      setError("Password must contain at least one lowercase letter.");
+      return;
+    }
 
     createUser(email, password)
       .then((userCredential) => {
@@ -93,6 +107,10 @@ const Register = () => {
                 className="input"
                 placeholder="Password"
               />
+
+              {error && (
+                <p className="text-red-500 text-sm mt-2 font-medium">{error}</p>
+              )}
               <button className="btn btn-neutral mt-4">Register</button>
 
               <p className="underline text-center font-medium">Or</p>
