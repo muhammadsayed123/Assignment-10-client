@@ -29,13 +29,16 @@ const UpdateMovie = () => {
     console.log(formData);
     // console.log(user.email)
 
-    fetch(`http://localhost:3000/movie/${data._id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
+    fetch(
+      `https://assignment-10-server-kappa-ivory.vercel.app/movie/${data._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(formData),
       },
-      body: JSON.stringify(formData),
-    })
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

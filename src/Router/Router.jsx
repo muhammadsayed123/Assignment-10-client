@@ -19,7 +19,10 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
-        loader: () => fetch("http://localhost:3000/top-rated"),
+        loader: () =>
+          fetch(
+            "https://assignment-10-server-kappa-ivory.vercel.app/top-rated",
+          ),
       },
       {
         path: "/login",
@@ -32,12 +35,15 @@ const router = createBrowserRouter([
       {
         path: "/allMovie",
         Component: AllMovie,
-        loader: () => fetch("http://localhost:3000/movie"),
+        loader: () =>
+          fetch("https://assignment-10-server-kappa-ivory.vercel.app/movie"),
       },
       {
         path: "/movieDetails/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/movie/${params.id}`),
+          fetch(
+            `https://assignment-10-server-kappa-ivory.vercel.app/movie/${params.id}`,
+          ),
         Component: MovieDetails,
       },
       {
@@ -64,14 +70,16 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/movie/${params.id}`),
+          fetch(
+            `https://assignment-10-server-kappa-ivory.vercel.app/movie/${params.id}`,
+          ),
       },
     ],
   },
   {
-    path:'*',
-    Component:Error
-  }
+    path: "*",
+    Component: Error,
+  },
 ]);
 
 export default router;

@@ -31,7 +31,6 @@ const TopRatedMovies = ({ movie }) => {
             <p>{rating}</p>
           </div>
           <div className="card-actions justify-between">
-            <button className="btn">Buy Now</button>
             <Link to={`/movieDetails/${_id}`} className="btn">
               Details
             </Link>

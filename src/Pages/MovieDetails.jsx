@@ -37,12 +37,15 @@ const MovieDetails = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed)
-        fetch(`http://localhost:3000/movie/${_id}`, {
-          method: "DELETE",
-          headers: {
-            "content-type": "application/json",
+        fetch(
+          `https://assignment-10-server-kappa-ivory.vercel.app/movie/${_id}`,
+          {
+            method: "DELETE",
+            headers: {
+              "content-type": "application/json",
+            },
           },
-        })
+        )
           .then((res) => res.json())
           .then((data) => {
             console.log(data);

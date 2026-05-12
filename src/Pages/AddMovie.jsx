@@ -25,7 +25,7 @@ const AddMovie = () => {
     console.log(formData);
     // console.log(user.email)
 
-    fetch("http://localhost:3000/movie", {
+    fetch("https://assignment-10-server-kappa-ivory.vercel.app/movie", {
       method: "POST",
       headers: {
         "content-type": "application/json",

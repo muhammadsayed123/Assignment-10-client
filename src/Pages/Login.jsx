@@ -49,6 +49,11 @@ const Login = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
+        Swal.fire({
+          title: "Sorry!",
+          text: "Invalied username or password.",
+          icon: "error",
+        });
       });
   };
 
