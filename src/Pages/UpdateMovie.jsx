@@ -154,8 +154,7 @@ const UpdateMovie = () => {
                     Rating (0-10)
                   </label>
                   <input
-                    defaultValue={data.rating}
-                    type="number"
+                    type="text"
                     name="rating"
                     placeholder="e.g. 8.5"
                     className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-500 focus:outline-none bg-gray-50 text-sm"

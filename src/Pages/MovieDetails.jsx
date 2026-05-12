@@ -24,7 +24,7 @@ const MovieDetails = () => {
   } = useLoaderData();
   //   console.log(movie);
 
-  const nevigate=useNavigate()
+  const nevigate = useNavigate();
 
   const handleDelete = () => {
     Swal.fire({
@@ -37,35 +37,35 @@ const MovieDetails = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed)
+        fetch(`http://localhost:3000/movie/${_id}`, {
+          method: "DELETE",
+          headers: {
+            "content-type": "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
 
-         fetch(`http://localhost:3000/movie/${_id}`, {
-      method: "DELETE",
-      headers: {
-        "content-type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
+            nevigate("/allMovie");
 
-  nevigate('/allMovie')
-
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success",
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-        
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
     });
   };
   return (
     <div className="w-10/12 mx-auto my-10">
-      <Link to="/allMovie" className="btn btn-outline btn-accent my-5">
+      <Link
+        to="/allMovie"
+        className="w-[100px] btn btn-outline btn-accent my-5"
+      >
         Back
       </Link>
       <div className="flex gap-5">
